@@ -1,0 +1,57 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.conda/
+conda-env/
+
+# Build and packaging outputs
+build/
+dist/
+.eggs/
+*.egg-info/
+pip-wheel-metadata/
+
+# Test and lint caches
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Generated model artifacts and folders
+**/yolo*
+**/*model*/
+*.onnx
+*.pt
+*.tflite
+*.npy
+*.npz
+*.param
+*.bin
+*.weights
+*.pb
+*.h5
+*.keras
+*.ckpt
+*.pth
+OCR/tessdata/
+
+# Test Results
+OCR/results/

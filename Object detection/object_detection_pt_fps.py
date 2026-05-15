@@ -1,0 +1,63 @@
+import cv2
+from picamera2 import Picamera2
+import time
+from ultralytics import YOLO
+
+def main():
+    # Load the YOLO26 PyTorch model
+    print("Loading YOLO26 PyTorch model...")
+    model = YOLO('yolo26n.pt')
+
+    # Initialize the Raspberry Pi Camera using picamera2
+    try:
+        picam2 = Picamera2()
+        config = picam2.create_video_configuration(main={"size": (640, 480), "format": "RGB888"})
+        picam2.configure(config)
+        picam2.start()
+    except Exception as e:
+        print(f"Error: Could not initialize picamera2. {e}")
+        return
+
+    print("Starting object detection (PyTorch). Press 'q' to quit.")
+
+    prev_time = time.time()
+
+    while True:
+        # Read a frame from the camera using picamera2
+        try:
+            image_rgb = picam2.capture_array()
+            # OpenCV display expects BGR
+            frame = cv2.cvtColor(image_rgb, cv2.COLOR_RGB2BGR)
+        except Exception as e:
+            print(f"Failed to grab frame: {e}")
+            break
+
+        # Run object detection
+        results = model(frame, stream=True, verbose=False)
+
+        # Draw the bounding boxes on the frame
+        annotated_frame = frame
+        for result in results:
+            annotated_frame = result.plot()
+
+        # Calculate FPS
+        curr_time = time.time()
+        fps = 1 / (curr_time - prev_time)
+        prev_time = curr_time
+
+        # Display FPS on the frame
+        cv2.putText(annotated_frame, f"FPS: {fps:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
+        # Display the output
+        cv2.imshow("Raspberry Pi Object Detection - PyTorch", annotated_frame)
+
+        # Check for the 'q' key to stop
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    # Release the camera and close windows
+    picam2.stop()
+    cv2.destroyAllWindows()
+
+if __name__ == "__main__":
+    main()
