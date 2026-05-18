@@ -5,6 +5,11 @@
  * securely outputs the dataset on a clean web interface.
  */
 
+// Prevent browser caching to ensure fresh data is always displayed
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 // 1. Database Configuration
 $host = 'localhost';
 $dbname = 'mydb';
