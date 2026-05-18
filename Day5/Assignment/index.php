@@ -40,6 +40,8 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Auto-refresh the page every 3 seconds to fetch new data -->
+    <meta http-equiv="refresh" content="3">
     <title>Raspberry Pi Environment Recorder</title>
     <style>
         body {
