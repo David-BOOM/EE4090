@@ -9,7 +9,7 @@ echo "------------------------------"
 echo "Initializing..."
 
 # Execute the SQL commands to create the database and table
-mysql -u "$DB_USER" -e "
+sudo mysql -u "$DB_USER" -e "
 CREATE DATABASE IF NOT EXISTS $DB_NAME;
 USE $DB_NAME;
 

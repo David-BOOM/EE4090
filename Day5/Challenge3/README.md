@@ -28,10 +28,10 @@ First, make sure your MySQL server is running. Then, create the necessary databa
 
 ```bash
 # Create a database (if you don't already have one)
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS iot_database;"
+sudo mysql -u root -e "CREATE DATABASE IF NOT EXISTS iot_database;"
 
 # Import the table schema into the database
-mysql -u root iot_database < schema.sql
+sudo mysql -u root iot_database < schema.sql
 ```
 
 ### 2. Configure the Script
