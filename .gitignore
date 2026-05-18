@@ -55,3 +55,7 @@ OCR/tessdata/
 
 # Test Results
 OCR/results/
+
+#Secrets
+*.env
+secrets.txt
