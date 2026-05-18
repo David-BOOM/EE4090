@@ -27,8 +27,8 @@ pip3 install mysqlclient
 First, make sure your MySQL server is running. Then, create the necessary database and table using the provided `schema.sql` file. From your terminal, run:
 
 ```bash
-# Create a database (if you don't already have one)
-sudo mysql -u root -e "CREATE DATABASE IF NOT EXISTS iot_database;"
+# Create a database and user (if you don't already have one)
+sudo mysql -u root -e "CREATE DATABASE IF NOT EXISTS iot_database; CREATE USER IF NOT EXISTS 'iot_user'@'localhost' IDENTIFIED BY ''; GRANT ALL ON iot_database.* TO 'iot_user'@'localhost'; FLUSH PRIVILEGES;"
 
 # Import the table schema into the database
 sudo mysql -u root iot_database < schema.sql
@@ -40,7 +40,7 @@ Before running the script, you must configure it with your database credentials.
 ```python
 db_config = {
     "host": "localhost",
-    "user": "root",           # Replace with your MySQL username
+    "user": "iot_user",       # Dedicated user created for the script
     "passwd": "",             # No password required
     "db": "iot_database"      # Ensure this matches your target database
 }

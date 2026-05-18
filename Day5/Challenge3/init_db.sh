@@ -8,9 +8,12 @@ echo "Database Initialization Script"
 echo "------------------------------"
 echo "Initializing..."
 
-# Execute the SQL commands to create the database and table
+# Execute the SQL commands to create the database, user, and table
 sudo mysql -u "$DB_USER" -e "
 CREATE DATABASE IF NOT EXISTS $DB_NAME;
+CREATE USER IF NOT EXISTS 'iot_user'@'localhost' IDENTIFIED BY '';
+GRANT ALL PRIVILEGES ON $DB_NAME.* TO 'iot_user'@'localhost';
+FLUSH PRIVILEGES;
 USE $DB_NAME;
 
 CREATE TABLE IF NOT EXISTS temperature_log (

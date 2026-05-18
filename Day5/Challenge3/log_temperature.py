@@ -20,7 +20,7 @@ def log_temperature():
         # IMPORTANT: Replace these with your actual local MySQL credentials
         db_config = {
             "host": "localhost",
-            "user": "root",
+            "user": "iot_user",
             "passwd": "",
             "db": "iot_database"
         }
