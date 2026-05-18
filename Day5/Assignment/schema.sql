@@ -1,5 +1,8 @@
 -- Create the target database (if it doesn't already exist)
 CREATE DATABASE IF NOT EXISTS mydb;
+CREATE USER IF NOT EXISTS 'iot_user'@'localhost' IDENTIFIED BY '';
+GRANT ALL PRIVILEGES ON mydb.* TO 'iot_user'@'localhost';
+FLUSH PRIVILEGES;
 USE mydb;
 
 -- Stage 1 Local Database Table

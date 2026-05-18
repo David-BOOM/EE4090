@@ -3,7 +3,7 @@ from sense_hat import SenseHat
 
 # ----------------- Configuration -----------------
 DB_HOST = "localhost"
-DB_USER = "root"      # Or use 'iot_user' if avoiding sudo constraints
+DB_USER = "iot_user"  # Changed from 'root' to avoid Error 1698
 DB_PASS = ""          # Empty password per previous configurations
 DB_NAME = "mydb"
 PI_ID = 1             # Hardcoded Raspberry Pi ID

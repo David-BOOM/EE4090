@@ -4,7 +4,7 @@ from time import sleep
 
 # ----------------- Configuration -----------------
 DB_HOST = "localhost"
-DB_USER = "root"      # Or use 'iot_user'
+DB_USER = "iot_user"  # Changed from 'root' to avoid Error 1698
 DB_PASS = ""          
 DB_NAME = "mydb"
 
