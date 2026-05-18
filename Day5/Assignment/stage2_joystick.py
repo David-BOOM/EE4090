@@ -1,6 +1,7 @@
 import MySQLdb
 from sense_hat import SenseHat
 from time import sleep
+from stage1 import log_environment
 
 # ----------------- Configuration -----------------
 DB_HOST = "localhost"
@@ -62,6 +63,10 @@ def push_to_db(event):
         conn.commit()
         
         print(f"Event Success: Uploaded [Temp: {temp}C, Humi: {humi}%, Press: {press}hPa] to {TARGET_TABLE}")
+        
+        # Call stage1.py's function to also log to the local_env_records table
+        # This ensures the PHP webpage (which reads local_env_records) updates as well
+        log_environment()
         
     except MySQLdb.Error as db_err:
         print(f"Database Error: {db_err}")
