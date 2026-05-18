@@ -21,7 +21,7 @@ def log_temperature():
         db_config = {
             "host": "localhost",
             "user": "root",
-            "passwd": "your_password",
+            "passwd": "",
             "db": "iot_database"
         }
         

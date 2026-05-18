@@ -6,14 +6,10 @@ DB_USER="root"
 
 echo "Database Initialization Script"
 echo "------------------------------"
-
-# Prompt for the MySQL root password securely
-read -s -p "Enter MySQL password for user '$DB_USER': " DB_PASS
-echo ""
 echo "Initializing..."
 
 # Execute the SQL commands to create the database and table
-mysql -u "$DB_USER" -p"$DB_PASS" -e "
+mysql -u "$DB_USER" -e "
 CREATE DATABASE IF NOT EXISTS $DB_NAME;
 USE $DB_NAME;
 
