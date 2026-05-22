@@ -177,7 +177,16 @@ sudo chmod 644 /var/www/html/marksix.php
 ### Checkpoint 9:
 
 ```bash
+# Duplicate your counter executable tool into the student's active public workspace path
+sudo cp /var/www/html/counter001.php /home/student/public_html/counter001.php
+sudo chown student:student /home/student/public_html/counter001.php
+sudo chmod 644 /home/student/public_html/counter001.php
 
+# Fix Apache restriction rule that defaults PHP compilation off inside home workspaces (~user)
+sudo sed -i '/<IfModule mod_userdir.c>/,/<\/IfModule>/s/php_admin_flag engine Off/php_admin_flag engine On/g' /etc/apache2/mods-available/php*.conf
+
+# Ensure global write accessibility permissions for the counter counter storage file remains active
+sudo touch /var/www/html/counter001.txt && sudo chmod 777 /var/www/html/counter001.txt
+
+sudo systemctl restart apache2
 ```
-
-
